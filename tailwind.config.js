@@ -20,10 +20,4 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {
-      backgroundColor: ["even"],
-      backgroundOpacity: ["even"],
-    },
-  },
 };

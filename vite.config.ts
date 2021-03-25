@@ -16,6 +16,8 @@ export default defineConfig({
   plugins: [
     svelte({
       preprocess: sveltePreprocess({ postcss: true }),
+      // TODO remove this once vite-plugin-svelte caching bugs are fixed
+      disableTransformCache: true,
       emitCss: false,
       compilerOptions: {
         hydratable: isProd,
