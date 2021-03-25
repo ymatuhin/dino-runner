@@ -9,9 +9,15 @@
       "one": "У вас {messages} из {max}"
     }
   },
-  "global": {
-    "count": {
-      "one": "1"
-    }
+  "serverError": {
+    "network": {
+      "title": "Network Error",
+      "message": "Something went wrong with the network connection, please try again later"
+    },
+    "server": {
+      "title": "Server Error",
+      "message": "Something went wrong with the server, please try again later"
+    },
+    "retry": "Try again"
   }
 }

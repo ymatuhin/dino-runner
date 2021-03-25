@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Favicons } from "shared/ui";
-  import { trans } from "shared/i18n";
+  import { Favicons, Alert, ErrorAlert, WarnAlert, InfoAlert, SuccessAlert } from "shared/ui";
+  import { t } from "shared/i18n";
   import { version } from "../package.json";
   import { i18n } from "./i18n";
   import { Game } from "./game";
@@ -18,8 +18,8 @@
 <a href="/">en</a>
 
 <svelte:head>
-  <title>{trans($i18n, "home.title")}</title>
-  <meta name="description" content={trans($i18n, "home.description")} />
+  <title>{t($i18n, "home.title")}</title>
+  <meta name="description" content={t($i18n, "home.description")} />
   <Favicons />
 </svelte:head>
 
@@ -28,6 +28,12 @@
     <DarkMode class="mb-2" />
     <h2 class="typo-overline">играть онлайн</h2>
     <h1 class="mb-4 typo-h2">Динозавр T-Rex из Google Chrome</h1>
+
+    <Alert class="mb-2" title="Title" message="hello world" />
+    <ErrorAlert class="mb-2" title="Error" message="Your email is already used!" />
+    <WarnAlert class="mb-2" title="Error" message="Your email is already used!" />
+    <InfoAlert class="mb-2" title="Error" message="Your email is already used!" />
+    <SuccessAlert class="mb-2" title="Error" message="Your email is already used!" />
 
     <p class="text-lg">
       Мини игра с прыгающим динозавром первый раз появилась в браузере Google Chrome Canary.

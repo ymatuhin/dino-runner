@@ -12,7 +12,7 @@
   router.subscribe((_) => window.scrollTo(0, 0));
 </script>
 
-<TransProvider i18n={$i18n}>
+<TransProvider {i18n}>
   <Route path="/">
     <Home />
   </Route>
