@@ -1,0 +1,17 @@
+{
+  "home": {
+    "title": "Home page title",
+    "helloMessage": "У вас {count} из {max}",
+    "helloMessage:count": {
+      "one": "У вас {messages} из {max}"
+    },
+    "helloMessage:max": {
+      "one": "У вас {messages} из {max}"
+    }
+  },
+  "global": {
+    "count": {
+      "one": "1"
+    }
+  }
+}

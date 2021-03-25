@@ -1,21 +1,22 @@
 <script lang="ts">
-  let count = 0;
-  let titleIcon = process.env.NODE_ENV === "development" ? "🚧" : "";
+  import type { Locale } from "./i18n";
 
-  function handleClick() {
-    count += 1;
-  }
+  import { Route, router } from "tinro";
+  import { TransProvider } from "shared/i18n";
+  import { i18n } from "./i18n";
+  import Home from "./Home.svelte";
+
+  $: locale = ($router.path === "/ru" ? "ru" : "en") as Locale;
+  $: i18n.changeLocale(locale);
+
+  router.subscribe((_) => window.scrollTo(0, 0));
 </script>
 
-<svelte:head>
-  <title>{titleIcon} Custom title</title>
-</svelte:head>
-
-<div class="container max-w-2xl mx-auto px-3 md:px-5">
-  <h1 class="text-5xl mt-6 sm:mt-12 md:mt-24">Demo</h1>
-
-  <button class="text-base" on:click={handleClick}>
-    Clicked {count}
-    {count === 1 ? "time" : "times"}
-  </button>
-</div>
+<TransProvider i18n={$i18n}>
+  <Route path="/">
+    <Home />
+  </Route>
+  <Route path="/ru">
+    <Home />
+  </Route>
+</TransProvider>
