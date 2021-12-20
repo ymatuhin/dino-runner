@@ -15,10 +15,10 @@
     "skipThirdPartyRequests": true
   },
   "dependencies": {
-    "ym": "workspace:*",
+    "preact": "^10.6.4",
     "preact-iso": "^2.3.0",
     "preact-render-to-string": "^5.1.19",
-    "preact": "^10.6.4"
+    "ym": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",

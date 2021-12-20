@@ -1,6 +1,8 @@
 import { LocationProvider, Route, Router } from "preact-iso/router";
 import lazy from "preact-iso/lazy";
-import { I18nProvider, useI18n, addLocaleRoutes } from "ym/i18n";
+import { createLocalRoutes } from "ym/utils/createLocalRoutes";
+import { useStore } from "ym/utils/useStore";
+import { init as i18nInit, I18nProvider } from "ym/i18n";
 
 const rootLang = "en";
 const dictionaries = {
@@ -8,30 +10,28 @@ const dictionaries = {
   en: () => import("./en.js"),
 };
 
-// TODO: LazyPage with title/metatags
-
-const routes = addLocaleRoutes({
+const i18n = i18nInit({ rootLang, dictionaries });
+const routes = createLocalRoutes({
   rootLang,
-  otherLangs: ["ru", "ua", "be"],
+  dictionaries,
   routes: [
     { path: "/about", component: lazy(() => import("./about")) },
     { path: "/", component: lazy(() => import("./home")) },
     { default: true, path: "/404", component: lazy(() => import("./404")) },
   ],
 });
+console.log(`# routes`, routes);
+// TODO: LazyPage with title/metatags
+// вставить прямо сюда перед роутами
 
 export function App() {
-  const { onRouteChange, ...rest } = useI18n(rootLang, dictionaries);
+  const dictionary = useStore(i18n.$dictionary);
+  const lang = useStore(i18n.$lang);
 
   return (
     <LocationProvider>
-      <I18nProvider {...rest}>
-        <a href="/">Home</a> &nbsp;
-        <a href="/about">About</a> &nbsp;
-        <a href="/ru">Главная</a> &nbsp;
-        <a href="/ru/about">Обо мне</a> &nbsp;
-        <hr />
-        <Router onRouteChange={onRouteChange}>
+      <I18nProvider lang={lang} dictionary={dictionary}>
+        <Router onRouteChange={i18n.onRouteChange}>
           {routes.map((route) => (
             <Route {...route} />
           ))}
