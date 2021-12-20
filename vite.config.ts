@@ -1,29 +1,11 @@
 import { defineConfig } from "vite";
-import svelte from "@sveltejs/vite-plugin-svelte";
-import sveltePreprocess from "svelte-preprocess";
-import legacy from "@vitejs/plugin-legacy";
-
-const isProd = process.env.NODE_ENV === "production";
+import preact from "@preact/preset-vite";
+import visualizer from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   optimizeDeps: {
-    include: ["@ymatuhin/debug"],
+    exclude: ["ym"],
   },
-  server: {
-    port: 1022,
-  },
-  plugins: [
-    svelte({
-      preprocess: sveltePreprocess({ postcss: true }),
-      // TODO remove this once vite-plugin-svelte caching bugs are fixed
-      disableTransformCache: true,
-      emitCss: false,
-      compilerOptions: {
-        hydratable: isProd,
-        dev: !isProd,
-      },
-    }),
-    legacy(),
-  ].filter(Boolean),
+  plugins: [preact(), visualizer({ gzipSize: true })],
 });

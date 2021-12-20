@@ -1,23 +1,7 @@
-const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
-
-// tailwind.config.js
 module.exports = {
-  presets: [require("shared/ui/tailwind.preset")],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    fontFamily: {
-      heading: ["Roboto Condensed", defaultTheme.fontFamily.sans],
-      base: ["Roboto", defaultTheme.fontFamily.sans],
-      mono: defaultTheme.fontFamily.mono,
-    },
-    extend: {
-      colors: {
-        gray: colors.trueGray,
-        primary: colors.emerald,
-      },
-      transitionProperty: {
-        filter: "filter",
-      },
-    },
+    extend: {},
   },
+  plugins: [],
 };
